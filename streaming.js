@@ -9,7 +9,7 @@ var options = {
   host: 'stream-fxpractice.oanda.com',
   // subscribe up to 10 instruments
   // update accountId
-  path: '/v1/quote?accountId=<your account ID>&instruments=EUR_USD%2CUSD_CAD',
+  path: '/v1/prices?accountId=<your account ID>&instruments=EUR_USD%2CUSD_CAD',
   method: 'GET',
   // update access token
   headers: {"Authorization" : "Bearer <your access token>"},
