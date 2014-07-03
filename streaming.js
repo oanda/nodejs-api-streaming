@@ -4,15 +4,28 @@ var fs = require('fs');
 var last;
 var tick;
 
+
+/*
+Environment           <Domain>
+fxTrade               stream-fxtrade.oanda.com
+fxTrade Practice      stream-fxpractice.oanda.com
+sandbox               stream-sandbox.oanda.com
+*/
+
+// Replace the following variables with your personal ones
+var domain = 'stream-fxpractice.oanda.com'
+var access_token = 'ACCESS-TOKEN'
+var account_id = '1234567'
+// Up to 10 instruments, separated by URL-encoded comma (%2C)
+var instruments = "EUR_USD%2CUSD_CAD"
+
+
 var https = require('https');
 var options = {
-  host: 'stream-fxpractice.oanda.com',
-  // subscribe up to 10 instruments
-  // update accountId
-  path: '/v1/prices?accountId=<your account ID>&instruments=EUR_USD%2CUSD_CAD',
+  host: domain,
+  path: '/v1/prices?accountId=' + account_id + '&instruments=' + instruments,
   method: 'GET',
-  // update access token
-  headers: {"Authorization" : "Bearer <your access token>"},
+  headers: {"Authorization" : "Bearer " + access_token},
 };
 
 var request = https.request(options, function(response){
