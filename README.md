@@ -1,7 +1,7 @@
 nodejs-api-streaming
 ================
 
-A demo app in Javascript for streaming rates using OANDA open api and socket.io
+A demo application in Javascript for streaming rates using OANDA API and socket.io
 
 ### Setup
 
@@ -34,7 +34,7 @@ To execute, run the following command:
 
     node streaming.js
 
-when socket.io is started, go to your browser:
+When socket.io is started, go to your browser:
 
 	http://127.0.0.1:1337/index.html
 

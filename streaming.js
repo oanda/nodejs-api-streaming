@@ -14,13 +14,18 @@ sandbox               stream-sandbox.oanda.com
 
 // Replace the following variables with your personal ones
 var domain = 'stream-fxpractice.oanda.com'
-var access_token = 'ACCESS-TOKEN'
+var access_token = 'ACCESS-TOKEN1'
 var account_id = '1234567'
 // Up to 10 instruments, separated by URL-encoded comma (%2C)
 var instruments = "EUR_USD%2CUSD_CAD"
 
+var https;
 
-var https = require('https');
+if (domain.indexOf("stream-sandbox") > -1) {
+  https = require('http');
+} else {
+  https = require('https');
+}
 var options = {
   host: domain,
   path: '/v1/prices?accountId=' + account_id + '&instruments=' + instruments,
