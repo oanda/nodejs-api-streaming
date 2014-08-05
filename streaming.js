@@ -14,8 +14,8 @@ sandbox               stream-sandbox.oanda.com
 
 // Replace the following variables with your personal ones
 var domain = 'stream-fxpractice.oanda.com'
-var access_token = 'ACCESS-TOKEN1'
-var account_id = '1234567'
+var access_token = 'ACCESS-TOKEN'
+var account_id = '12345'
 // Up to 10 instruments, separated by URL-encoded comma (%2C)
 var instruments = "EUR_USD%2CUSD_CAD"
 
@@ -34,12 +34,15 @@ var options = {
 };
 
 var request = https.request(options, function(response){
-  response.on("data", function(chunk){
-    tick = chunk.toString();
-  });
-  response.on("end", function(){
-    console.log("Disconnected");
-  });
+      response.on("data", function(chunk){
+         bodyChunk = chunk.toString();
+      });
+      response.on("end", function(chunk){
+         console.log("Error connecting to OANDA HTTP Rates Server");
+         console.log("HTTP - " + response.statusCode);
+         console.log(bodyChunk);
+         process.exit(1);
+      });
 });
 
 request.end();
@@ -60,9 +63,9 @@ function handler (req, res) {
 
 io.sockets.on('connection', function (socket) {
   setInterval(function(){
-    if (tick !== last) {
-      socket.emit('news', tick);
-      last = tick;
+    if (bodyChunk !== last) {
+      socket.emit('news', bodyChunk);
+      last = bodyChunk;
     }
   }, 0.001);
 });
