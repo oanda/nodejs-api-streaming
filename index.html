@@ -6,8 +6,9 @@
       socket.on('news', function (data) {
         var row = document.getElementById("mytable").insertRow(-1);
         row.innerHTML = data;
+        row.scrollIntoView(false);
       });
-    </script> 
+    </script>
     <div id = "data">
         <table id="mytable"></table>
     </div>
